@@ -68,6 +68,7 @@ body {
   height: 40px;
   margin-left: 50px;
   margin-top: 5px;
+  border-radius: 2px;
 }
 
 .navbar-search .container-1 {
@@ -107,13 +108,8 @@ body {
 }
 
 .top-nav>li {
-  text-transform: uppercase;
-  background-color: #2196f3;
-
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  float: left;
+  margin-right: 5px;
 }
 
 .top-nav>li>a {
@@ -121,9 +117,20 @@ body {
   font-weight: bold;
   font-size: 12px;
   line-height: 20px;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #2196f3;
   border: 1px;
   border-color: #fff;
   color: white;
+  box-shadow: 2px 2px 2px #888888;
+  border-radius: 2px;
+}
+.btn.btn-primary.btn-lg.btn-block.login-button {
+  background-color: #2196f3;
 }
 
 .top-nav .login {
@@ -216,10 +223,10 @@ ul.alert-dropdown {
     width: 257px;
   }
 
-  .side-nav li a:hover,
-  .side-nav li a:focus {
+  .navbar-inverse .navbar-nav>li>a:hover,
+  .navbar-inverse .navbar-nav>li>a:focus {
     outline: none;
-    background-color: #000 !important;
+    background-color: #914711 !important;
   }
 }
 
@@ -229,6 +236,8 @@ ul.alert-dropdown {
   margin-top: 7px;
   margin-left: 7px;
   padding: 7px;
+  box-shadow: 2px 2px 2px #888888;
+  border-radius: 2px;
 }
 
 .navbar-inverse .navbar-nav>li>a>i {
@@ -247,7 +256,7 @@ ul.alert-dropdown {
 }
 
 .side-nav>li>ul>li>a:hover {
-  color: #fff;
+  color: #337ab7;
 }
 
 /* Flot Chart Containers */

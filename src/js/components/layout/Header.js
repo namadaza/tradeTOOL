@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 
 import Sidenav from "./Sidenav";
+import CreateAccount from "./CreateAccount";
 import Login from "./Login";
 
 export default class Header extends React.Component {
@@ -28,12 +29,20 @@ export default class Header extends React.Component {
 
           <ul class="nav navbar-right top-nav">
             <li class="buttons">
-              <a href="" class="login" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in"></i> Login</a>
+              <a href="" class="login" data-toggle="modal" data-target="#myLoginModal">
+                <i class="fa fa-sign-in"></i> Login
+              </a>
+            </li>
+            <li class="buttons">
+              <a href="" class="createacc" data-toggle="modal" data-target="#myCreateAccModal">
+                <i class="fa fa-user"></i> Create Account
+              </a>
             </li>
           </ul>
           <Sidenav />
         </nav>
-        <Login id="myModal" class="modal fade" role="dialog"></Login>
+        <Login id="myLoginModal" class="modal fade" role="dialog"></Login>
+        <CreateAccount id="myCreateAccModal" class="modal fade" role="dialog"></CreateAccount>
       </div>
     );
   }

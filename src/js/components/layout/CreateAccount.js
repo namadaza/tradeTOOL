@@ -1,26 +1,23 @@
 import React from "react";
 
-export default class Login extends React.Component {
+export default class CreateAccount extends React.Component {
   render() {
     console.log("login");
     const marginStyle = {
       margin: "10px"
     };
     const titleStyle = {
-      fontFamily: "'Abril Fatface', cursive",
-      fontSize: "40px",
-      textAlign: "center",
+      "font-family": "'Abril Fatface', cursive",
+      "font-size": "40px",
+      "text-align": "center",
       color: "#ff7d1e"
     }
     const btnStyle = {
-      backgroundColor: "#2196f3"
-    }
-    const wrapperStyle = {
-      width: "350px"
+      "background-color": "#2196f3"
     }
     return (
-      <div id="myLoginModal" class="modal fade" role="dialog">
-        <div class="modal-dialog" style={wrapperStyle}>
+      <div id="myCreateAccModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
           <div class="modal-content">
             <div class="modal-header">
@@ -33,10 +30,30 @@ export default class Login extends React.Component {
               <form class="form-horizontal" method="post" action="#">
 
                 <div class="form-group">
-                  <label for="username" class="cols-sm-2 control-label">Username</label>
+                  <label for="name" class="cols-sm-2 control-label">Your Name</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="username" class="cols-sm-2 control-label">Username</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                       <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
                     </div>
                   </div>
@@ -52,10 +69,19 @@ export default class Login extends React.Component {
                   </div>
                 </div>
 
+                <div class="form-group">
+                  <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                      <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="form-group ">
                   <button type="button" style={btnStyle} class="btn btn-primary btn-lg btn-block login-button">
-                    <i class="fa fa-sign-in"></i> Login
+                    <i class="fa fa-user"></i> Register
                   </button>
                 </div>
               </form>
