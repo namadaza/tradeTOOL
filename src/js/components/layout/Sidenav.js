@@ -2,7 +2,6 @@ import React from "react";
 
 export default class Sidenav extends React.Component {
   render() {
-    console.log("sidenav")
     return (
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">

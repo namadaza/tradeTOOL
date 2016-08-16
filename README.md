@@ -6,15 +6,15 @@
  npm start
 ```
 
-# Launching a Server
+# Launching Servers
 ```sh
  npm start
 ```
 Will start a local webpack-dev-server with hot-reloading
 
 ```sh
- webpack
- node ./bin/www
+ webpack --watch
+ nodemon ./bin/www
  ```
  Will bundle all JS modules into a minified client.min.js, will then launch
  Express.js middleware

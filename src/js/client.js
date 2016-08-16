@@ -13,3 +13,7 @@ ReactDOM.render(
     </Route>
   </Router>,
 client);
+
+if (module.hot) {
+  module.hot.accept();
+}

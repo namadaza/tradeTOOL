@@ -2,18 +2,18 @@ import React from "react";
 
 export default class CreateAccount extends React.Component {
   render() {
-    console.log("login");
+    console.log("UPDATEDDD");
     const marginStyle = {
       margin: "10px"
     };
     const titleStyle = {
-      "font-family": "'Abril Fatface', cursive",
-      "font-size": "40px",
-      "text-align": "center",
+      fontFamily: "'Abril Fatface', cursive",
+      fontSize: "40px",
+      textAlign: "center",
       color: "#ff7d1e"
     }
     const btnStyle = {
-      "background-color": "#2196f3"
+      backgroundColor: "#2196f3"
     }
     return (
       <div id="myCreateAccModal" class="modal fade" role="dialog">

@@ -7,7 +7,6 @@ import Login from "./Login";
 
 export default class Header extends React.Component {
   render() {
-    console.log("header")
     return (
       <div id="wrapper">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

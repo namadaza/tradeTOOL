@@ -2,7 +2,6 @@ import React from "react";
 
 export default class Posts extends React.Component {
   render() {
-    console.log("posts")
     return (
       <div id="wrapper">
         <div id="page-wrapper">

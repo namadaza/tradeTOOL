@@ -5,7 +5,6 @@ import Header from "../components/layout/Header";
 
 export default class Layout extends React.Component {
   render() {
-    console.log("layout")
     return (
       <div>
         <Header />

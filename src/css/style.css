@@ -240,6 +240,13 @@ ul.alert-dropdown {
   border-radius: 2px;
 }
 
+@media(max-width:768px) {
+  .navbar-inverse .navbar-nav>li>a {
+    background-color: #ff7d1e;
+    box-shadow: 0px 0px 0px #888888;
+  }
+}
+
 .navbar-inverse .navbar-nav>li>a>i {
   float: right;
 }
