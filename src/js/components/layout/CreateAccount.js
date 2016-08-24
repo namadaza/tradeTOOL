@@ -1,11 +1,33 @@
 import React from "react";
+import _ from "underscore";
+
+const ACCOUNT = [
+  {"title": "Name", "label": "name", "class": "fa fa-user fa", "name": "name", "placeholder": "Enter Your Name", "type": "text"},
+  {"title": "Email", "label": "email", "class": "fa fa-envelope fa", "name": "email", "placeholder": "Enter Your Email", "type": "text"},
+  {"title": "Username", "label": "username", "class": "fa fa-users fa", "name": "user", "placeholder": "Enter Your Username", "type": "text"},
+  {"title": "Password", "label": "password", "class": "fa fa-lock fa-lg", "name": "password", "placeholder": "Enter Your Password", "type": "password"},
+  {"title": "Confirm Password", "label": "confirm", "class": "fa fa-lock fa-lg", "name": "confirm", "placeholder": "Confirm Your Password", "type": "password"},
+]
 
 export default class CreateAccount extends React.Component {
+  accountTemplate(item) {
+    return (
+      <div class="form-group">
+        <label for={item.label} class="cols-sm-2 control-label">{item.title}</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon"><i class={item.class} aria-hidden="true"></i></span>
+            <input type={item.type} class="form-control" name={item.name} id={item.name} placeholder={item.placeholder}/>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
-    console.log("UPDATEDDD");
     const marginStyle = {
       margin: "10px"
-    };
+    }
     const titleStyle = {
       fontFamily: "'Abril Fatface', cursive",
       fontSize: "40px",
@@ -18,7 +40,6 @@ export default class CreateAccount extends React.Component {
     return (
       <div id="myCreateAccModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -28,57 +49,7 @@ export default class CreateAccount extends React.Component {
             </div>
             <div class="modal-body" style={marginStyle}>
               <form class="form-horizontal" method="post" action="#">
-
-                <div class="form-group">
-                  <label for="name" class="cols-sm-2 control-label">Your Name</label>
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="username" class="cols-sm-2 control-label">Username</label>
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="password" class="cols-sm-2 control-label">Password</label>
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
-                    </div>
-                  </div>
-                </div>
-
+                {_(ACCOUNT).map(this.accountTemplate, this)}
                 <div class="form-group ">
                   <button type="button" style={btnStyle} class="btn btn-primary btn-lg btn-block login-button">
                     <i class="fa fa-user"></i> Register
@@ -90,9 +61,8 @@ export default class CreateAccount extends React.Component {
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
-
         </div>
       </div>
-    );
+    )
   }
 }
