@@ -17,7 +17,7 @@ export default class Header extends React.Component {
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/tt_icon.png" /></a>
+            <a class="navbar-brand" href="index.html"><img src="img/tt_icon.png" /></a>
             <div class="navbar-search">
               <div class="container-1">
                 <input type="search" id="search" placeholder="Search..." />
