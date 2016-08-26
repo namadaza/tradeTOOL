@@ -2,10 +2,9 @@ import React from "react";
 
 export default class Login extends React.Component {
   render() {
-    console.log("login");
     const marginStyle = {
       margin: "10px"
-    };
+    }
     const titleStyle = {
       fontFamily: "'Abril Fatface', cursive",
       fontSize: "40px",
