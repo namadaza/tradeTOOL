@@ -20,7 +20,6 @@ mongoose.connect(db);
 
 //SERVER and ROUTES
 var app = express();
-var users = require('./routes/users');
 var port = 8080;
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,7 +31,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/users', users);
+
+app.use(function(req, res) {
+  Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {
+    if (err) {
+      res.status(500).send(err.message)
+    } else if (redirectLocation) {
+      res.status(302).redirect(redirectLocation.pathname + redirectLocation.search)
+    } else if (renderProps) {
+        var html = ReactDOM.renderToString(React.createElement(Router.RoutingContext, renderProps));
+        var page = swig.renderFile('views/index.html', { html: html });
+        res.status(200).send(page);
+    } else {
+      res.status(404).send('Page Not Found')
+    }
+  });
+});
 
 app.listen(port, function() {
   console.log('tradeTOOL listening on port: ' + port);
