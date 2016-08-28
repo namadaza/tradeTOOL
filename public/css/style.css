@@ -106,12 +106,13 @@ body {
   margin-right: 5px;
   margin-top: 5px;
 }
-
+.top-nav>div>li,
 .top-nav>li {
   float: left;
   margin-right: 5px;
 }
 
+.top-nav>div>li>a,
 .top-nav>li>a {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: bold;
@@ -119,6 +120,7 @@ body {
   line-height: 20px;
   text-transform: uppercase;
   color: white;
+  padding: 10px 15px 10px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -143,6 +145,8 @@ body {
   }
 }
 
+.top-nav>div>li>a:hover,
+.top-nav>div>li>a:focus,
 .top-nav>li>a:hover,
 .top-nav>li>a:focus,
 .top-nav>.open>a,
