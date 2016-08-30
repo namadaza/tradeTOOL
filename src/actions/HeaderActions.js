@@ -1,9 +1,16 @@
 import alt from '../alt';
+import { assign } from 'underscore';
 
 class HeaderActions {
   constructor() {
     this.generateActions(
-      'getAccountStatus'
+      'getAccountStatusSuccess',
+      'getAccountStatusFail',
+      'findPostsSuccess',
+      'findPostsFail',
+      'updateSearchQuery',
+      'updateAjaxAnimation',
+      'updateOnlineUsers'
     );
   }
 
@@ -16,6 +23,21 @@ class HeaderActions {
         this.actions.getAccountStatusFail(jqXhr)
       });
   }
+
+  findPosts(payload) {
+    $.ajax({
+      url: '/api/search',
+      data: { name: payload.searchQuery }
+    })
+      .done((data) => {
+        assign(payload, data);
+        this.actions.findPostsSuccess(payload);
+      })
+      .fail(() => {
+        this.actions.findPostsFail(payload);
+      });
+  }
+
 }
 
 export default alt.createActions(HeaderActions);

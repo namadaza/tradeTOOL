@@ -20,7 +20,7 @@ mongoose.connect(db);
 
 //SERVER and ROUTES
 var app = express();
-var port = 8080;
+app.set('port', 8080);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'html');
@@ -30,7 +30,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.use(function(req, res) {
   Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {
@@ -48,7 +47,26 @@ app.use(function(req, res) {
   });
 });
 
-app.listen(port, function() {
-  console.log('tradeTOOL listening on port: ' + port);
+/**
+ * Just socket.io things...
+*/
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var onlineUsers = 0;
+
+io.sockets.on('connection', function(socket) {
+  onlineUsers++;
+
+  io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
+
+  socket.on('disconnect', function() {
+    onlineUsers--;
+    io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
+  });
 });
+
+server.listen(app.get('port'), function() {
+  console.log('tradeTOOL Express server listening on port: ' + app.get('port'));
+});
+
 //module.exports = app;

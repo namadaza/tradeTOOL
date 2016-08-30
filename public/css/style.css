@@ -64,7 +64,7 @@ body {
 
 .navbar-search {
   background-color: #914711;
-  width: 220px;
+  width: 280px;
   height: 40px;
   margin-left: 50px;
   margin-top: 5px;
@@ -86,8 +86,13 @@ body {
   padding-right:5px;
 }
 
-.navbar-serach .container-1>span {
+.navbar-search .container-1>button {
+  display: inline;
   float: right;
+  margin-bottom: 5px;
+  background-color: transparent;
+  border: none;
+  margin-top: -2px;
 }
 
 .navbar-inverse .navbar-brand>img {
@@ -99,6 +104,14 @@ body {
 .navbar-inverse .navbar-brand:focus {
   color: #000;
   background-color: transparent;
+}
+
+.badge.badge-up.badge-danger {
+  float: right;
+  clear: both;
+  margin-right: -30px;
+  margin-top: -32px;
+  background-color: rebeccapurple;
 }
 
 .top-nav {

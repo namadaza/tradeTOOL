@@ -14,6 +14,26 @@ class HeaderStore {
   onGetAccountStatusFail(jqXhr) {
     toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
   }
+
+  onFindPostsSuccess(payload) {
+    payload.history.pushState(null, '/posts/' + payload.postId); //transition state to post's page
+  }
+
+  onFindPostsFail(jqXhr) {
+    toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+  }
+
+  onUpdateAjaxAnimation(className) {
+    this.ajaxAnimationClass = className; //fade in or fade out
+  }
+
+  onUpdateSearchQuery(event) {
+    this.searchQuery = event.target.value;
+  }
+
+  onUpdateOnlineUsers(data) {
+    this.onlineUsers = data.onlineUsers;
+  }
 }
 
 export default alt.createStore(HeaderStore);

@@ -18,6 +18,22 @@ export default class Header extends React.Component {
   componentDidMount() {
     HeaderStore.listen(this.onChange);
     HeaderActions.getAccountStatus();
+
+    let socket = io.connect();
+
+    socket.on('onlineUsers', (data) => {
+      HeaderActions.updateOnlineUsers(data);
+    })
+
+    $(document).ajaxStart(() => {
+      HeaderActions.updateAjaxAnimation('fadeIn');
+    });
+
+    $(document).ajaxComplete(() => {
+      setTimeout(() => {
+        HeaderActions.updateAjaxAnimation('fadeOut');
+      }, 750);
+    });
   }
 
   componentWillUnmount() {
@@ -26,6 +42,20 @@ export default class Header extends React.Component {
 
   onChange(state) {
     this.setState(state);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    let searchQuery = this.state.searchQuery.trim();
+
+    if (searchQuery) {
+      HeaderActions.findPosts({
+        searchQuery: searchQuery,
+        searchForm: this.refs.searchForm,
+        history: this.props.history
+      });
+    }
   }
 
   render() {
@@ -80,13 +110,18 @@ export default class Header extends React.Component {
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="img/tt_icon.png" /></a>
-            <div class="navbar-search">
-              <div class="container-1">
-                <input type="search" id="search" placeholder="Search..." />
-                <span class="icon"><i class="fa fa-search"></i></span>
+            <Link to='/' class="navbar-brand"><img src="img/tt_icon.png" /></Link>
+            <form ref='searchForm' onSubmit={this.handleSubmit.bind(this)}>
+              <div class="navbar-search">
+                <div class="container-1">
+                  <input type='text' value={this.state.searchQuery} onChange={HeaderActions.updateSearchQuery} id="search" placeholder="Search..." />
+                  <button className='btn btn-default' onClick={this.handleSubmit.bind(this)}>
+                    <span className='glyphicon glyphicon-search'></span>
+                  </button>
+                </div>
               </div>
-            </div>
+          </form>
+          <span className='badge badge-up badge-danger'>{this.state.onlineUsers}</span>
           </div>
 
           <ul class="nav navbar-right top-nav">
