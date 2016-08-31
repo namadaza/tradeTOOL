@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 export default class Login extends React.Component {
   render() {
@@ -54,7 +55,8 @@ export default class Login extends React.Component {
 
                 <div class="form-group ">
                   <button type="button" style={btnStyle} class="btn btn-primary btn-lg btn-block login-button">
-                    <i class="fa fa-sign-in"></i> Login
+                    <i class="fa fa-sign-in"></i> 
+                    <Link to="/login">Login</Link>
                   </button>
                 </div>
               </form>
