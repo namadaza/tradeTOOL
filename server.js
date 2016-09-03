@@ -13,10 +13,18 @@ var mongoose = require('mongoose');
 var path = require('path');
 var routes = require('./src/routes');
 var swig  = require('swig');
+var async = require('async');
+var request = require('request');
+var xml2js = require('xml2js');
 
 //DB
-var db = 'mongodb://localhost/tradeTOOL';
-mongoose.connect(db);
+var config = require('./db/config');
+var User = require('./db/User.model');
+var Post = require('./db/Post.model');
+mongoose.connect(config.database);
+mongoose.connection.on('error', function() {
+  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
+})
 
 //SERVER and ROUTES
 var app = express();

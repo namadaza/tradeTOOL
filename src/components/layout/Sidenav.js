@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 import _ from "underscore";
 
 const CATEGORIES = [
@@ -29,6 +30,9 @@ export default class Sidenav extends React.Component {
       <div className="collapse navbar-collapse navbar-ex1-collapse">
         <ul className="nav navbar-nav side-nav">
           {_(CATEGORIES).map(this.navTemplate, this)}
+          <li>
+            <Link to="/createPost"> Create Post</Link>
+          </li>
         </ul>
       </div>
     )

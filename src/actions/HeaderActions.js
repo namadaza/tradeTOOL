@@ -26,7 +26,7 @@ class HeaderActions {
 
   findPosts(payload) {
     $.ajax({
-      url: '/api/search',
+      url: '/api/posts/search',
       data: { name: payload.searchQuery }
     })
       .done((data) => {
