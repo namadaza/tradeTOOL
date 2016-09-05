@@ -1,5 +1,4 @@
 import alt from '../alt';
-import { assign } from 'underscore';
 
 class CreatePostActions {
   constructor() {
@@ -26,10 +25,10 @@ class CreatePostActions {
       }
     })
       .done((data) => {
-        this.actions.createPostSuccess(data.message);
+        this.createPostSuccess(data.message);
       })
       .fail((jqXhr) => {
-        this.actions.createPostFail(jqXhr.responseJSON.message);
+        this.createPostFail(jqXhr.responseJSON.message);
       });
   }
 

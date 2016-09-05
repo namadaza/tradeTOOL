@@ -73,6 +73,7 @@ export default class CreatePost extends React.Component {
                        <label for="category">Category</label>
                        <select class="form-control" id="category" value={this.state.category}
                          onChange={CreatePostActions.updateCategory}>
+                         <option></option>
                          <option>For Sale</option>
                          <option>For Free</option>
                          <option>Academic</option>

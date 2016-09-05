@@ -17,10 +17,10 @@ class HeaderActions {
   getAccountStatus() {
     $.ajax({ url: '/api/accountStatus' })
       .done((data) => {
-        this.actions.getAccountStatusSuccess(data)
+        this.getAccountStatusSuccess(data)
       })
       .fail((jqXhr) => {
-        this.actions.getAccountStatusFail(jqXhr)
+        this.getAccountStatusFail(jqXhr)
       });
   }
 
@@ -31,10 +31,10 @@ class HeaderActions {
     })
       .done((data) => {
         assign(payload, data);
-        this.actions.findPostsSuccess(payload);
+        this.findPostsSuccess(payload);
       })
       .fail(() => {
-        this.actions.findPostsFail(payload);
+        this.findPostsFail(payload);
       });
   }
 

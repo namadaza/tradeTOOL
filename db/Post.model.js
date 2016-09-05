@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+
 var PostSchema = new mongoose.Schema({
-  postId: { type: String, unique: true, index: true },
   title: String,
   description: String,
+  category: String,
   price: { type: Number, default: 0 },
 });
 
