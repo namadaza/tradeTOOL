@@ -1,5 +1,6 @@
 import React from "react";
 import _ from "underscore";
+import { Link } from "react-router";
 
 const ACCOUNT = [
   {"title": "Name", "label": "name", "class": "fa fa-user fa", "name": "name", "placeholder": "Enter Your Name", "type": "text"},
@@ -52,7 +53,8 @@ export default class CreateAccount extends React.Component {
                 {_(ACCOUNT).map(this.accountTemplate, this)}
                 <div class="form-group ">
                   <button type="button" style={btnStyle} class="btn btn-primary btn-lg btn-block login-button">
-                    <i class="fa fa-user"></i> Register
+                    <i class="fa fa-user"></i> 
+                    <Link to="/createAccount">Register</Link>
                   </button>
                 </div>
               </form>
