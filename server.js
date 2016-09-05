@@ -13,25 +13,73 @@ var mongoose = require('mongoose');
 var path = require('path');
 var routes = require('./src/routes');
 var swig  = require('swig');
+var async = require('async');
+var request = require('request');
+var xml2js = require('xml2js');
 
 //DB
-var db = 'mongodb://localhost/tradeTOOL';
-mongoose.connect(db);
+var config = require('./db/config');
+var User = require('./db/User.model');
+var Post = require('./db/Post.model');
+mongoose.connect(config.database);
+mongoose.connection.on('error', function() {
+  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
+})
 
-//SERVER and ROUTES
+//SERVER
 var app = express();
-var port = 8080;
+app.set('port', 8080);
 
+//EXPRESS MIDDLEWARES
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'html');
-
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//AJAX API ROUTES
 
+/**
+ * POST /api/posts
+ * Creates a new post to the database
+*/
+app.post('/api/posts', function(req, res, next) {
+  var title = req.body.title;
+  var description = req.body.description;
+  var category = req.body.category;
+  var price = req.body.price;
+
+  async.waterfall([
+    function(callback) {
+      Post.findOne({ title: title, price: price, category: category }, function(err, post) {
+        if (err) return next(err);
+
+        if (post) {
+          return res.status(409).send({ message: post.title + ' already exists in the database!' });
+        }
+
+        callback(err, post)
+      });
+    },
+    function(post) {
+      var post = new Post ({
+        title: title,
+        description: description,
+        category: category,
+        price: price
+      });
+
+      post.save(function(err) {
+        if (err) return next(err);
+        res.send({ message: title + ' has been added successfully!' });
+      })
+    }
+  ]);
+});
+
+//REACT MIDDLEWARES
 app.use(function(req, res) {
   Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {
     if (err) {
@@ -48,7 +96,22 @@ app.use(function(req, res) {
   });
 });
 
-app.listen(port, function() {
-  console.log('tradeTOOL listening on port: ' + port);
+//SOCKET.IO CONFIG
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var onlineUsers = 0;
+
+io.sockets.on('connection', function(socket) {
+  onlineUsers++;
+
+  io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
+
+  socket.on('disconnect', function() {
+    onlineUsers--;
+    io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
+  });
 });
-//module.exports = app;
+
+server.listen(app.get('port'), function() {
+  console.log('tradeTOOL Express server listening on port: ' + app.get('port'));
+});

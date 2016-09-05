@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router";
 
-import Header from "../components/layout/Header";
+import Header from "./layout/Header";
 
 export default class Layout extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header history={this.props.history}/>
         {this.props.children}
       </div>
     );

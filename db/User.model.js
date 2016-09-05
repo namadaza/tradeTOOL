@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 var UserSchema = new mongoose.Schema({
   user_id: String,
   username: String,
@@ -8,4 +9,5 @@ var UserSchema = new mongoose.Schema({
   rating: Number,
   sales_history: [String]
 });
+
 module.exports = mongoose.model('User', UserSchema);
