@@ -15,7 +15,9 @@ export default class Sidenav extends React.Component {
   navTemplate(item) {
     return (
       <li>
-        <a href="javascript:;" data-toggle="collapse" data-target={"#" + item.name}>{item.display}<i class="fa fa-caret-square-o-down" aria-hidden="true"></i></a>
+        <Link to={item.name} href="javascript:;" data-toggle="collapse" data-target={"#" + item.name}>
+            {item.display}<i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+        </Link>
         <ul id={item.name} class="collapse">
           <li>
             <a href="#">{item.category}</a>

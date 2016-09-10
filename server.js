@@ -1,7 +1,7 @@
 
 // Babel ES6/JSX Compiler
 require('babel-register');
-
+var _ = require('underscore');
 var React = require('react');
 var ReactDOM = require('react-dom/server');
 var Router = require('react-router');
@@ -40,6 +40,64 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //AJAX API ROUTES
+/**
+ * GET /api/posts/top
+ * Return top 100 most recent posts
+*/
+app.get('/api/posts/top', function(req, res, next) {
+  Post
+    .find()
+    .limit(100)
+    .exec(function(err, posts) {
+      if (err) return next(err);
+
+      res.send(posts);
+    });
+});
+
+/**
+ * GET /api/posts/:category
+ * Return most recent posts
+*/
+app.get('/api/posts', function(req, res, next) {
+  var category;
+  var params = req.query;
+
+  _.each(params, function(value, key) {
+    category = value;
+  });
+  switch(category) {
+    case "forSale":
+      category = 'For Sale';
+      break;
+    case "forFree":
+      category = 'For Free';
+      break;
+    case "academic":
+      category = 'Academic';
+      break;
+    case "social":
+      category = 'social';
+      break;
+    case "athletic":
+      category = 'Athletic';
+      break;
+    case "housing":
+      category = 'Housing';
+      break;
+    default:
+      category = '';
+  }
+
+  Post
+    .find({ category: category })
+    .limit(100)
+    .exec(function(err, posts) {
+      if (err) return next(err);
+
+      res.send(posts);
+    });
+});
 
 /**
  * POST /api/posts
