@@ -1,23 +1,20 @@
 # tradeTool
 ----------------------------------------------
-# Quickstart
+Basic trading website developed using an isomorphic MERN stack!
+  * MongoDB NoSQL database, used with Mongoose ORM
+  * Express.js middleware
+  * React.js for frontend
+  * Node.js ecosystem
+
+Next step is to develop this project into cleaner MERN boilerplate.
+
+# Dev Quickstart
 ```sh
  npm install
- npm start
+ mongod &
+ webpack --watch &
+ nodemon server.js &
 ```
-
-# Launching Servers
-```sh
- npm start
-```
-Will start a local webpack-dev-server with hot-reloading
-
-```sh
- webpack --watch
- nodemon ./bin/www
- ```
- Will bundle all JS modules into a minified client.min.js, will then launch
- Express.js middleware
 
 # Framework Versions
 
