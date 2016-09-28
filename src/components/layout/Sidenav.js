@@ -28,12 +28,15 @@ export default class Sidenav extends React.Component {
   }
 
   render() {
+    const createpostBtnStyle = {
+      backgroundColor: "#2196f3"
+    }
     return (
       <div className="collapse navbar-collapse navbar-ex1-collapse">
         <ul className="nav navbar-nav side-nav">
           {_(CATEGORIES).map(this.navTemplate, this)}
           <li>
-            <Link to="/createPost"> Create Post</Link>
+            <Link to="/createPost" style={createpostBtnStyle}> Create Post</Link>
           </li>
         </ul>
       </div>

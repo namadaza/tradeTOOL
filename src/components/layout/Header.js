@@ -5,8 +5,8 @@ import HeaderStore from '../../stores/HeaderStore';
 import HeaderActions from '../../actions/HeaderActions';
 
 import Sidenav from "./Sidenav";
-import CreateAccount from "./CreateAccount";
-import Login from "./Login";
+import CreateAccount from "../CreateAccount";
+import Login from "../Login";
 
 export default class Header extends React.Component {
   constructor(props) {

@@ -1,0 +1,110 @@
+import React from "react";
+import { Link } from "react-router";
+
+import CreateAccountActions from "../actions/CreateAccountActions.js";
+import CreateAccountStore from "../stores/CreateAccountStore.js";
+import ReactPasswordStrength from "./layout/ReactPasswordStrength.js";
+
+export default class CreateAccount extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.setState({inBrowser: true});
+  }
+
+  render() {
+    const marginStyle = {
+      margin: "10px"
+    };
+    const passwordProps = {
+      placeholder: "Enter your password...",
+      id: "password",
+      autoFocus: true
+    }
+    const titleStyle = {
+      fontFamily: "'Abril Fatface', cursive",
+      fontSize: "40px",
+      textAlign: "center",
+      color: "#ff7d1e"
+    }
+    const btnStyle = {
+      backgroundColor: "#2196f3"
+    }
+    return (
+      <div id="myCreateAccModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" style={titleStyle}>
+                 tradeTOOL
+              </h4>
+            </div>
+            <div class="modal-body" style={marginStyle}>
+              <form class="form-horizontal" method="post" action="#">
+
+                <div class="form-group">
+                  <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="username" class="cols-sm-2 control-label">Username</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password" class="cols-sm-2 control-label">Password</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                      <ReactPasswordStrength
+                        minLength={5}
+                        minScore={2}
+                        scoreWords={['weak', 'okay', 'good', 'strong', 'RELAX']}
+                        inputProps={{ name: "password_input", autocomplete: "off" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group ">
+                  <button type="button" style={btnStyle} class="btn btn-primary btn-lg btn-block login-button">
+                    <i class="fa fa-user"></i> Register
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+}

@@ -32,44 +32,59 @@ export default class PostList extends React.Component {
 
   render() {
     const imgStyle = {
-      width: "100px",
-      height: "100px"
+      width: "150px",
+      height: "150px"
     }
     const wrapperStyle = {
       marginLeft: "-10px",
       marginRight: "-10px",
       marginTop: "10px"
     }
+    const priceStyle = {
+      color: "green",
+      float: "right"
+    }
+    const listgroupStyle = {
+      marginLeft: "70px",
+      marginRight: "40px",
+      paddingTop: "5px"
+    }
+    const postinfoStyle = {
+      display: "inline",
+      float: "left"
+    }
     let postList = this.state.posts.map((post, index) => {
       return (
         <div id='wrapper' style={wrapperStyle}>
           <div key={post._id} className='list-group-item animated fadeIn'>
             <div className='media'>
-              <span className='position pull-left'>{index + 1}</span>
               <div className='pull-left thumb-lg'>
                 <img className='media-object' src='img/tt_icon_filled.png' style={imgStyle}/>
               </div>
               <div className='media-body'>
-                <h4 className='media-heading'>
-                  {post.title}
-                </h4>
-                <small>Description: <strong>{post.description}</strong></small>
-                <br />
-                <small>Category: <strong>{post.category}</strong></small>
-                <br />
-                <small>Price: <strong>${post.price}</strong></small>
+                <div className="post-info" style={postinfoStyle}>
+                  <h1 className='media-heading'>
+                    <b>{post.title}</b>
+                  </h1>
+                  <h4><strong>{post.description}</strong></h4>
+                  <br />
+                  <small><strong>{post.category}</strong></small>
+                  <br />
+                </div>
+                <div className='pull-right thumb-lg' style={priceStyle}>
+                  <h1>${post.price}</h1>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       );
     });
 
     return (
-      <div className='container'>
-        <div className='list-group'>
-          {postList}
-        </div>
+      <div className='list-group' style={listgroupStyle}>
+        {postList}
       </div>
     );
   }
